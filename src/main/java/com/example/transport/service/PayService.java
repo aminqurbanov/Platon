@@ -7,14 +7,17 @@ import com.example.transport.repository.PayRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PayService implements PayServiceImpl {
+
     private final ModelMapper modelMapper;
     private final PayRepository payRepository;
+
     @Override
     public List<PayResponseDto> findAll() {
         return payRepository
@@ -26,20 +29,23 @@ public class PayService implements PayServiceImpl {
 
     @Override
     public PayResponseDto getPayById(Long id) {
-        Pay pay = payRepository.findById(id).get();
+        Pay pay = payRepository.findById(id).orElseThrow(() -> new RuntimeException("Pay not found"));
         return modelMapper.map(pay, PayResponseDto.class);
     }
 
     @Override
     public void createPay(PayRequestDto payRequestDto) {
-        Pay pay = modelMapper.map(payRequestDto,Pay.class);
+        Pay pay = modelMapper.map(payRequestDto, Pay.class);
         payRepository.save(pay);
+    }
 
+    @Override
+    public void update(Long id, PayRequestDto payRequestDto) {
+        
     }
 
     @Override
     public void delete(Long id) {
         payRepository.deleteById(id);
-
     }
 }
