@@ -1,0 +1,13 @@
+server:
+  port: 5555
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:1736/PY?createDatabaseIfNotExist=true
+    username: root
+    password: amin2005
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: false
+    open-in-view: false
+
