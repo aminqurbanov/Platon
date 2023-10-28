@@ -6,6 +6,7 @@ import com.example.transport.dto.PayResponseDto;
 import java.util.List;
 
 public interface PayServiceImpl {
+
     List<PayResponseDto> findAll();
 
     PayResponseDto getPayById(Long id);

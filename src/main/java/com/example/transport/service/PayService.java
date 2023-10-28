@@ -41,7 +41,7 @@ public class PayService implements PayServiceImpl {
 
     @Override
     public void update(Long id, PayRequestDto payRequestDto) {
-        
+
     }
 
     @Override
